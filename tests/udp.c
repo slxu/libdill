@@ -23,7 +23,7 @@
 */
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 int main(void) {
     struct ipaddr addr1;

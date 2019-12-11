@@ -28,7 +28,7 @@
 #include <string.h>
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 int main(void) {
 

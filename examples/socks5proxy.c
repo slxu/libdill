@@ -23,7 +23,7 @@
 */
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 #include <stdio.h>
 #include <string.h>
 

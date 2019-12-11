@@ -22,10 +22,11 @@
 
 */
 
+#include "libdill.h"
+
 #include <string.h>
 
 #include "assert.h"
-#include "../libdill.h"
 
 coroutine void client(void) {
     struct ipaddr addr;

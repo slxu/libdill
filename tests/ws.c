@@ -25,7 +25,7 @@
 #include <string.h>
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 coroutine void nohttp_client(int s) {
     s = ws_attach_client(s, WS_NOHTTP | WS_TEXT, NULL, NULL, -1);

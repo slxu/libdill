@@ -25,7 +25,7 @@
 #include <pthread.h>
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 int main() {
     int rc = msleep(now());

@@ -22,10 +22,10 @@
 
 */
 
-#include <stdio.h>
+#include <iostream>
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 coroutine void worker(void) {
 }
@@ -39,6 +39,9 @@ int main() {
     errno_assert(rc == 0);
     rc = hclose(cr2);
     errno_assert(rc == 0);
+
+    std::cout << "done in c++";
+
     return 0;
 }
 

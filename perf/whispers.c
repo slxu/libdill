@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 
-#include "../libdill.h"
+#include "libdill.h"
 
 static coroutine void whisper(int left, int right) {
     int val;

@@ -22,12 +22,13 @@
 
 */
 
+#include "libdill.h"
+
 #include <stdint.h>
 #include <stdio.h>
 #include <sys/time.h>
 
 #include "assert.h"
-#include "../libdill.h"
 
 coroutine static void delay(int n, int ch) {
     int rc = msleep(now() + n);

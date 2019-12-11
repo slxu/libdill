@@ -25,7 +25,7 @@
 #include <string.h>
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 coroutine void client1(int u) {
     int s = tls_attach_client(u, -1);

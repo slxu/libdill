@@ -25,7 +25,7 @@
 #include <string.h>
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 coroutine void client(int s) {
     s = suffix_attach(s, "\r\n", 2);

@@ -28,7 +28,7 @@
 #include <unistd.h>
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 struct foo {
     int first;

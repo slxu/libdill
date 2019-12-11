@@ -27,7 +27,7 @@
 #include <stdlib.h>
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 static int worker_done = 0;
 

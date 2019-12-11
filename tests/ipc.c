@@ -29,7 +29,7 @@
 #include <unistd.h>
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 #define TESTADDR "ipc.test"
 

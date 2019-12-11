@@ -22,11 +22,12 @@
 
 */
 
+#include "libdill.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "assert.h"
-#include "../libdill.h"
 
 #define ITERATIONS 1000
 

@@ -22,6 +22,8 @@
 
 */
 
+#include "libdill.h"
+
 #include <stdint.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -30,7 +32,6 @@
 #include <sys/types.h>
 
 #include "assert.h"
-#include "../libdill.h"
 
 coroutine void cancel(int fd) {
     int rc = fdin(fd, -1);

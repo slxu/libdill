@@ -25,7 +25,7 @@
 #include <string.h>
 
 #include "assert.h"
-#include "../libdill.h"
+#include "libdill.h"
 
 coroutine void client(void) {
     struct ipaddr addr;

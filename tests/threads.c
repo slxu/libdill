@@ -22,11 +22,12 @@
 
 */
 
+#include "libdill.h"
+
 #include <stdio.h>
 #include <pthread.h>
 
 #include "assert.h"
-#include "../libdill.h"
 
 coroutine void worker(int count, const char *text) {
     int i;

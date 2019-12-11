@@ -30,7 +30,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../libdill.h"
+#include "libdill.h"
 
 /* The static HTML that will be sent to the browser when it connects. */
 const char *html =

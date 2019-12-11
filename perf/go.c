@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 
-#include "../libdill.h"
+#include "libdill.h"
 
 static coroutine void worker(void) {
 }

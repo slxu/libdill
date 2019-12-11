@@ -22,12 +22,13 @@
 
 */
 
+#include "libdill.h"
+
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
 
 #include "assert.h"
-#include "../libdill.h"
 
 #define SIGNAL SIGUSR1
 #define COUNT 1000

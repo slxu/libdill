@@ -21,8 +21,6 @@
   IN THE SOFTWARE.
 
 */
-#include <libdill.h>
-
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,7 +36,6 @@
 #include <libdill.h>
 
 #include "assert.h"
-#include "../libdill.h"
 
 coroutine void client(int port) {
     struct ipaddr addr;

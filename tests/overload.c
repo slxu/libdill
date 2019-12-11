@@ -22,10 +22,11 @@
 
 */
 
+#include "libdill.h"
+
 #include <unistd.h>
 
 #include "assert.h"
-#include "../libdill.h"
 
 coroutine void relay(int src, int dst) {
     while(1) {

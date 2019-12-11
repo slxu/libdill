@@ -22,10 +22,11 @@
 
 */
 
+#include "libdill.h"
+
 #include <stdio.h>
 
 #include "assert.h"
-#include "../libdill.h"
 
 coroutine void sender1(int ch, int val) {
     int rc = chsend(ch, &val, sizeof(val), -1);

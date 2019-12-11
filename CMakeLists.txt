@@ -2,15 +2,88 @@
 # If you find out it's not working fix it and send a pull request.
 
 cmake_minimum_required(VERSION 3.1)
-project(libdill VERSION 1.6 LANGUAGES C)
+project(libdill VERSION 1.6)
+
+set(CMAKE_CXX_STANDARD 14)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wno-comment -Wno-reorder -Wno-unused-variable -Wno-pedantic -Wno-deprecated -Wno-deprecated-declarations -Wno-invalid-pch")
+
+if(X86 OR X86_64)
+  # "march=native" is not compatible with distcc, so we insert expanded options via:
+  # gcc -march=native -E -v - </dev/null 2>&1
+  set(CXX_EXTRA_FLAGS "-msse4.2 -mfpmath=sse -march=broadwell -mmmx -mno-3dnow -msse -msse2 -msse3 -mssse3 -mno-sse4a -mcx16 -msahf -mmovbe -maes -mno-sha -mpclmul -mpopcnt -mabm -mno-lwp -mfma -mno-fma4 -mno-xop -mbmi -mbmi2 -mno-tbm -mavx -mavx2 -msse4.2 -msse4.1 -mlzcnt -mrtm -mhle -mrdrnd -mf16c -mfsgsbase -mrdseed -mprfchw -madx -mfxsr -mxsave -mxsaveopt -mno-avx512f -mno-avx512er -mno-avx512cd -mno-avx512pf -mno-prefetchwt1 -mclflushopt -mxsavec -mxsaves -mno-avx512dq -mno-avx512bw -mno-avx512vl -mno-avx512ifma -mno-avx512vbmi -mno-clwb -mno-pcommit -mno-mwaitx --param l1-cache-size=32 --param l1-cache-line-size=64 --param l2-cache-size=6144 -mtune=generic -fstack-protector-strong -Wformat -Werror=format-security")
+else()
+  # use "march=native" for non-x86 platform for the moment
+  set(CXX_EXTRA_FLAGS "-march=native -mtune=native -fstack-protector-strong -Wformat -Werror=format-security")
+endif()
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX_EXTRA_FLAGS}")
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D__STRICT_ANSI__ -Dlinux -Dunix")
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -pipe")
+
+message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 
 include(CheckSymbolExists)
 include(CheckFunctionExists)
 
-file(GLOB sources ${CMAKE_CURRENT_LIST_DIR}/*.c ${CMAKE_CURRENT_LIST_DIR}/dns/dns.c)
-include_directories(${PROJECT_SOURCE_DIR} "${PROJECT_SOURCE_DIR}/dns")
+set(SRCS
+    include/cr.h
+    include/ctx.h
+    include/epoll.h.inc
+    include/fd.h
+    include/handle.h
+    include/iol.h
+    include/kqueue.h.inc
+    include/libdill.h
+    include/list.h
+    include/now.h
+    include/poll.h.inc
+    include/pollset.h
+    include/qlist.h
+    include/rbtree.h
+    include/slist.h
+    include/stack.h
+    include/utils.h
+    src/libdillimpl.h
+    src/bsock.c
+    src/chan.c
+    src/cr.c
+    src/ctx.c
+    src/epoll.c.inc
+    src/fd.c
+    src/handle.c
+    src/happyeyeballs.c
+    src/http.c
+    src/iol.c
+    src/ipaddr.c
+    src/ipc.c
+    src/kqueue.c.inc
+    src/libdill.c
+    src/msock.c
+    src/now.c
+    src/poll.c.inc
+    src/pollset.c
+    src/prefix.c
+    src/rbtree.c
+    src/socks5.c
+    src/stack.c
+    src/suffix.c
+    src/tcp.c
+    src/term.c
+    src/tls.c
+    src/udp.c
+    src/utils.c
+    src/ws.c
+    src/dns/dns.c
+)
+
+include_directories(${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/src
+    ${PROJECT_SOURCE_DIR}/src/dns)
+
 set_source_files_properties(dns/dns.c PROPERTIES COMPILE_FLAGS -std=c99)
-add_library(dill ${sources})
+add_library(dill ${SRCS})
 
 # add pthread
 list(APPEND CMAKE_REQUIRED_LIBRARIES pthread)
@@ -127,7 +200,7 @@ if(BUILD_TESTING)
         tests/bundle.c
         tests/chan.c
         tests/choose.c
-        tests/example.c
+        tests/example.cpp
         tests/fd.c
         tests/go1.c
         tests/go2.c
@@ -150,7 +223,7 @@ if(BUILD_TESTING)
         tests/tcp.c
         tests/threads.c
         tests/threads2.c
-        tests/tls.c
+        #tests/tls.c
         tests/udp.c
         tests/ws.c)
     foreach(test_file IN LISTS test_files)

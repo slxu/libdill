@@ -22,8 +22,9 @@
 
 */
 
+#include "libdill.h"
+
 #include "assert.h"
-#include "../libdill.h"
 
 int main(void) {
     int h[2];

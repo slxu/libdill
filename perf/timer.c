@@ -30,7 +30,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "../libdill.h"
+#include "libdill.h"
 
 #define BASE_TIME 5000
 
